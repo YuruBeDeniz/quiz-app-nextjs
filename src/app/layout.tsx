@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Logo from "@/assets/react-quiz-logo.svg";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} bg-[#2b2737] p-4 max-w-full m-auto flex flex-col items-center`}>
+        <Image className="h-[80px] sm:h-full" src={Logo} alt="logo" />
+        {children}
+      </body>
     </html>
   );
 }
