@@ -9,8 +9,6 @@ const getQuestions = async (amount: number, difficulty: Difficulty): Promise<Que
 
   const data = await (await fetch(endpoint, { cache: "no-store" })).json();
 
-  console.log(data)
-
   return data.results.map((question: Question) => ({
     ...question,
     answers: shuffleArray([...question.incorrect_answers, question.correct_answer])
@@ -19,7 +17,7 @@ const getQuestions = async (amount: number, difficulty: Difficulty): Promise<Que
 
 export default async function Quiz() {
   const questions = await getQuestions(TOTAL_QUESTIONS, Difficulty.EASY);
-  
+
   return (
     <QuizQuestions questions={questions} totalQuestions={TOTAL_QUESTIONS} /> 
   )
