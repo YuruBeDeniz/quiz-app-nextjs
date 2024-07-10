@@ -3,6 +3,7 @@ import { QuestionsState } from "@/types/quiz";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "./Button";
+import QuestionCard from "./QuestionCard";
 
 type QuizProps = {
     questions: QuestionsState;
@@ -41,7 +42,14 @@ export default function Quiz({questions, totalQuestions }: QuizProps) {
     <div className="text-white text-center">
       <p className="p-8 font-bold text-[20px]">Score: {score}</p>
       <p className="text-[#9F50AC] font-bold pb-2 text-[14px]">Question {currentQuestionIndex + 1} out of {totalQuestions}</p>
-      QuestionCard comes here
+      <QuestionCard
+        currentQuestionIndex={currentQuestionIndex}
+        question={questions[currentQuestionIndex].question}
+        answers={questions[currentQuestionIndex].answers}
+        userAnswer={userAnswers[currentQuestionIndex]}
+        correctAnswer={questions[currentQuestionIndex].correct_answer}
+        onClick={handleOnAnswerClick}
+      />
       <div className="flex justify-between mt-16">
         <Button 
           text="Prev" 
